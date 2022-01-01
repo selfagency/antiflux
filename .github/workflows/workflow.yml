@@ -4,13 +4,17 @@ on:
     branches:
       - main
 jobs:
-  codecov:
-    name: code coverage
+  tests:
+    name: Run tests and upload coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Check code coverage
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+      - name: Upload code coverage
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
