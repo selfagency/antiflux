@@ -70,7 +70,7 @@ store.delete('myKey')
 
 ### Dump data
 
-Dump all state data. Specify `true` to decrypt encrypted data. False by default.
+Dump all state data. Specify `true` to decrypt encrypted data. Default is `false`.
 
 ```js
 store.dump()
@@ -119,6 +119,18 @@ be reloaded from disk at runtime.
 ```js
 const options = {
   persist: '/tmp/antiflux.db'
+}
+
+const store = new Antiflux({}, options)
+```
+
+### Debug mode
+
+Use the `debug` option to print state changes to the console, e.g.: `(Store) foo: bar ➟ baz`.
+
+```js
+const options = {
+  debug: true
 }
 
 const store = new Antiflux({}, options)
