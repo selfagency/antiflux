@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Create GitHub Release
+        uses: justincy/github-action-npm-release@v1.2.0
+        id: release
       - name: Publish if version has been updated
         uses: pascalgn/npm-publish-action@1.3.8
         with:
