@@ -4,6 +4,8 @@ A lightweight (<22kb bundled), zero-dependency, in-memory store and observable
 state manager, exclusively for Node.js, for when reactive stage managers and
 their attendant boilerplate are overkill.
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/666e01ad11404edbb1e1c7d96955fa8a)](https://www.codacy.com/gh/selfagency/antiflux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=selfagency/antiflux&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/selfagency/antiflux/branch/main/graph/badge.svg?token=vEDzApC7xH)](https://codecov.io/gh/selfagency/antiflux) [![Known Vulnerabilities](https://snyk.io/test/github/{selfagency}/{antiflux}/badge.svg)](https://snyk.io/test/github/selfagency/antiflux)
+
 ## Installation
 
 ```sh
@@ -20,7 +22,7 @@ const store = new Antiflux([initialState], [options], [getters])
 
 ### Set key
 
-Add or update a key.
+Add or update a key. Value can be of any type.
 
 ```js
 store.set('myKey', 'myValue')
@@ -36,16 +38,22 @@ store.has('myKey')
 
 ### Get key
 
-Responds with the key value.
+Get a key's value.
 
 ```js
 const myValue = store.get('myKey')
 ```
 
-Deep-get with dot notation.
+### Deep operations
+
+Supports dot notation.
 
 ```js
-const myValue = store.get('deep.deeper.deepest')
+store.set('deep.deeper.deepest', 'deeperest')
+
+if (store.has('deep.deeper.deepest')) {
+  return store.get('deep.deeper.deepest')
+}
 ```
 
 ### Watch for changes
