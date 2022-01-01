@@ -1,8 +1,8 @@
 # Antiflux
 
-A lightweight (<20kb), zero-dependency, in-memory store and observable state manager,
-exclusively for Node.js, for when reactive stage managers and their attendant
-boilerplate are overkill.
+A lightweight (<22kb bundled), zero-dependency, in-memory store and observable
+state manager, exclusively for Node.js, for when reactive stage managers and
+their attendant boilerplate are overkill.
 
 ## Installation
 
