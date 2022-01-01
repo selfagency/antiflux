@@ -1,0 +1,37 @@
+{
+  "name": "antiflux",
+  "version": "0.1.0",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "author": "Daniel Sieradski <daniel@self.agency>",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "yarn build",
+    "build": "rm -rf dist; tsc && tsc --declaration --outFile dist/main.d.ts --emitDeclarationOnly --declarationMap --inlineSourceMap --isolatedModules false;",
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "testTimeout": 10000,
+    "testMatch": [
+      "**/__tests__/**/*.test.ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^25.3.3",
+    "jest": "^27.4.5",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
+  }
+}
