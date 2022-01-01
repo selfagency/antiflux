@@ -48,6 +48,18 @@ Deep-get with dot notation.
 const myValue = store.get('deep.deeper.deepest')
 ```
 
+### Watch for changes
+
+Watch a key for changes. Available targets are `set`, `delete`, and `clear`.
+
+```js
+store.watch.on('set', e => {
+  const { key, value, prior } = e
+
+  console.log(`The key ${key} changed from ${prior} to ${value}`).
+})
+```
+
 ### Delete key
 
 Delete a key from the state.
