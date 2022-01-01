@@ -1,8 +1,6 @@
 import fs from 'fs'
-
-interface Schema {
-  [key: string]: any
-}
+import { decrypt, encrypt } from './crypto'
+import type { EncryptedData, Schema } from './main'
 
 const readFile = fs.readFileSync
 const writeFile = fs.writeFileSync
@@ -16,19 +14,29 @@ function sort(obj) {
     }, {})
 }
 
-const write = (path: string, data: Schema): void => {
+const write = (path: string, data: Schema | EncryptedData, key?: string): void => {
   try {
+    if (key) {
+      data = <EncryptedData>encrypt(key, data)
+    }
+
     writeFile(path, JSON.stringify(data), 'utf8')
   } catch (err) {
     throw new Error('Could not write to file')
   }
 }
 
-const read = (path: string): Schema | void => {
+const read = (path: string, key?: string): Schema | void => {
   try {
     if (fs.existsSync(path)) {
-      const data = readFile(path, 'utf8')
-      return sort(JSON.parse(<string>data))
+      let data: string | Schema | EncryptedData = readFile(path, 'utf8')
+      data = <EncryptedData>JSON.parse(data)
+
+      if (key) {
+        data = <Schema>decrypt(key, data)
+      }
+
+      return sort(data)
     } else {
       throw new Error('File does not exist')
     }

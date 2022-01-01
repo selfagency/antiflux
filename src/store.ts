@@ -1,21 +1,8 @@
 import { EventEmitter } from 'events'
 import { existsSync } from 'fs'
-import { decrypt, encrypt } from './crypto'
 import { read, write } from './io'
-
-export interface Schema {
-  [key: string]: any
-}
-
-export interface Options {
-  persist?: string
-  encryptKey?: string
-  debug?: boolean
-}
-
-export interface Getter {
-  (state: Schema): any
-}
+import type { Getter, Options, Schema } from './main'
+import { deepset } from './util'
 
 export default class Store {
   watch: EventEmitter
@@ -52,7 +39,7 @@ export default class Store {
           console.log('Writing to disk:')
           console.log(dump)
         }
-        write(<string>options.persist, dump)
+        write(<string>options.persist, dump, options.encryptKey)
       }
 
       this.watch.on('set', () => save())
@@ -62,7 +49,7 @@ export default class Store {
 
     // read and write persisted data
     if (options.persist && existsSync(options.persist)) {
-      const data = read(options.persist)
+      const data = read(options.persist, options.encryptKey)
 
       for (const key in <Schema>data) {
         this.set(key, data[key])
@@ -82,19 +69,15 @@ export default class Store {
   // get key
   get(key: string) {
     if (this.state[key]) {
-      return this.options.encryptKey ? decrypt(this.options.encryptKey, this.state[key]) : this.state[key]
+      return this.state[key]
     } else {
       if (key.includes('.')) {
         const keys = key.split('.')
         let current
         for (const k in keys) {
-          if (!current) {
-            current = this.state[keys[k]]
-          } else {
-            current = current[keys[k]]
-          }
+          current = current ? current[keys[k]] : this.state[keys[k]]
         }
-        return this.options.encryptKey ? decrypt(this.options.encryptKey, current) : current
+        return current
       }
 
       return undefined
@@ -109,33 +92,36 @@ export default class Store {
   }
 
   // dump data
-  dump(decryptData = false): Schema {
-    if (this.options.encryptKey && decryptData) {
-      const localState: Schema = Object.assign({}, this.state)
-      for (const key in localState) {
-        localState[key] = decrypt(this.options.encryptKey, localState[key])
-      }
-      return localState
-    } else {
-      return this.state
-    }
+  dump(): Schema {
+    const localState: Schema = Object.assign({}, this.state)
+    return localState
   }
 
   // set key
-  set(key: string, value): void {
-    const prior = this.get(key)
+  set(key: string, value: unknown): void {
+    const prior = this.get(<string>key)
 
-    if (this.options.encryptKey) {
-      this.state[key] = encrypt(this.options.encryptKey, value)
+    if (key.includes('.')) {
+      this.state = <Schema>deepset(this.state, key, value)
     } else {
-      this.state[key] = value
+      this.state[<string>key] = value
     }
+
     this.watch.emit('set', { key, value, prior })
   }
 
   // has key
   has(key: string): boolean {
-    return Object.prototype.hasOwnProperty.call(this.state, key)
+    if (key.includes('.')) {
+      const keys = key.split('.')
+      let current = {}
+      for (const k in keys) {
+        current = current ? current[keys[k]] : this.state[keys[k]]
+      }
+      return current !== undefined
+    } else {
+      return Object.prototype.hasOwnProperty.call(this.state, key)
+    }
   }
 
   // delete key

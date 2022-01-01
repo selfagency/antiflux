@@ -1,11 +1,18 @@
 import { decrypt, encrypt } from '../src/crypto'
-import { EncryptedData } from '../src/types'
+import { EncryptedData } from '../src/main'
+import Store from '../src/store'
 import vars from './helpers/vars'
 
-const { key, testString } = vars
+const { key, state, testObj } = vars
+
+test('initialize encrypted store', () => {
+  const localState = Object.assign({}, state)
+  const store = new Store(localState, { encryptKey: key })
+  expect(store).toBeDefined()
+})
 
 test('encrypt', () => {
-  const output = encrypt(key, testString)
+  const output = encrypt(key, testObj)
   expect(output).toBeDefined()
 })
 
@@ -15,13 +22,13 @@ test('encrypt without string', () => {
 })
 
 test('encrypt without key', () => {
-  expect(() => encrypt(null, testString)).toThrow()
+  expect(() => encrypt(null, testObj)).toThrow()
 })
 
 test('decrypt', () => {
-  const encrypted = <EncryptedData>encrypt(key, testString)
+  const encrypted = <EncryptedData>encrypt(key, testObj)
   const decrypted = decrypt(key, encrypted)
-  expect(decrypted).toBe(testString)
+  expect(decrypted).toStrictEqual(testObj)
 })
 
 test('decrypt without encrypted data', () => {
@@ -30,6 +37,6 @@ test('decrypt without encrypted data', () => {
 })
 
 test('decrypt without key', () => {
-  const encrypted = <EncryptedData>encrypt(key, testString)
+  const encrypted = <EncryptedData>encrypt(key, testObj)
   expect(() => decrypt(null, encrypted)).toThrow()
 })

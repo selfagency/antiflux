@@ -1,8 +1,8 @@
 # Antiflux
 
-A lightweight, zero-dependency, observable state manager, exclusively for
-Node.js, for when reactive stage managers and their attendant boilerplate are
-extreme overkill.
+A lightweight (<20kb), zero-dependency, in-memory store and observable state manager,
+exclusively for Node.js, for when reactive stage managers and their attendant
+boilerplate are overkill.
 
 ## Installation
 
@@ -70,7 +70,7 @@ store.delete('myKey')
 
 ### Dump data
 
-Dump all state data. Specify `true` to decrypt encrypted data. Default is `false`.
+Dump all state data.
 
 ```js
 store.dump()
@@ -99,18 +99,6 @@ const initialState = {
 const store = new Antiflux(initialState)
 ```
 
-### Encrypt data
-
-Encrypt data at rest with AES-256-GCM encryption. Use the `encryptKey` option to specify a 32-character encryption key.
-
-```js
-const options = {
-  encryptKey: 'bWDlfrMxr1cnl4F4sdOvoKEOO9WY628a'
-}
-
-const store = new Antiflux({}, options)
-```
-
 ### Persist data
 
 Use the `persist` option to specify a path at which to write data. Data will
@@ -119,6 +107,18 @@ be reloaded from disk at runtime.
 ```js
 const options = {
   persist: '/tmp/antiflux.db'
+}
+
+const store = new Antiflux({}, options)
+```
+
+### Encrypt data
+
+Encrypt persisted data at rest with AES-256-GCM encryption. Use the `encryptKey` option to specify a 32-character encryption key.
+
+```js
+const options = {
+  encryptKey: 'bWDlfrMxr1cnl4F4sdOvoKEOO9WY628a'
 }
 
 const store = new Antiflux({}, options)

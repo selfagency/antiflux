@@ -1,6 +1,4 @@
-import { decrypt } from '../src/crypto'
 import { read, write } from '../src/io'
-import type { Schema } from '../src/store'
 import Store from '../src/store'
 import del from './helpers/del'
 import vars from './helpers/vars'
@@ -47,7 +45,7 @@ test('delete persisted data', () => {
 
   del(localPath)
 
-  expect(store.dump(true)).toStrictEqual(localState)
+  expect(store.dump()).toStrictEqual(localState)
 })
 
 test('clear persisted data', async () => {
@@ -73,14 +71,7 @@ test('persist encrypted data', () => {
   del(localPath)
 
   const store = new Store(localState, { persist: localPath, encryptKey: key })
-  const fromFile = read(path)
-
-  for (const f in <Schema>fromFile) {
-    console.log(fromFile)
-    if (fromFile[f]) {
-      fromFile[f] = decrypt(key, fromFile[f])
-    }
-  }
+  const fromFile = read(path, key)
 
   del(localPath)
 

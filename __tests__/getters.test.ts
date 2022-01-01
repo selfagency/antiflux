@@ -1,5 +1,5 @@
+import type { Schema } from '../src/main'
 import Store from '../src/store'
-import type { Schema } from '../src/types.d'
 import vars from './helpers/vars'
 
 const { state } = vars
