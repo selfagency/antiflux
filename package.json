@@ -21,7 +21,7 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rm -rf dist; tsc && tsc --declaration --outFile dist/main.d.ts --emitDeclarationOnly --declarationMap --inlineSourceMap --isolatedModules false;",
+    "build": "rm -rf dist; tsc",
     "test": "jest --coverage"
   },
   "jest": {

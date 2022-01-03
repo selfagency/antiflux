@@ -1,4 +1,4 @@
-import * as Antiflux from './store'
+import Antiflux from './store'
 
 export interface Schema {
   [key: string]: unknown

@@ -4,7 +4,7 @@ A lightweight (<22kb bundled), zero-dependency, in-memory store and observable
 state manager, exclusively for Node.js, for when reactive state managers and
 their attendant boilerplate are overkill.
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/666e01ad11404edbb1e1c7d96955fa8a)](https://www.codacy.com/gh/selfagency/antiflux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=selfagency/antiflux&amp;utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/selfagency/antiflux/branch/main/graph/badge.svg?token=vEDzApC7xH)](https://codecov.io/gh/selfagency/antiflux) [![Known Vulnerabilities](https://snyk.io/test/github/selfagency/antiflux/badge.svg)](https://snyk.io/test/github/selfagency/antiflux)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/666e01ad11404edbb1e1c7d96955fa8a)](https://www.codacy.com/gh/selfagency/antiflux/dashboard?utm_source=github.com&utm_medium=referral&utm_content=selfagency/antiflux&utm_campaign=Badge_Grade) [![codecov](https://codecov.io/gh/selfagency/antiflux/branch/main/graph/badge.svg?token=vEDzApC7xH)](https://codecov.io/gh/selfagency/antiflux) [![Known Vulnerabilities](https://snyk.io/test/github/selfagency/antiflux/badge.svg)](https://snyk.io/test/github/selfagency/antiflux)
 
 ## Installation
 
@@ -15,7 +15,7 @@ npm install antiflux || yarn add antiflux
 ## Usage
 
 ```js
-import { Antiflux } from 'antiflux'
+import Antiflux from 'antiflux'
 
 const store = new Antiflux([initialState], [options], [getters])
 ```
