@@ -21,7 +21,7 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rm -rf dist; tsc",
+    "build": "rm -rf dist; tsc -p ./tsconfig.json",
     "test": "jest --coverage"
   },
   "jest": {
