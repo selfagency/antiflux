@@ -1,6 +1,6 @@
 {
   "name": "antiflux",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "keywords": [
     "store",
     "state",
@@ -10,6 +10,7 @@
     "node",
     "flux"
   ],
+  "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "author": "Daniel Sieradski <daniel@self.agency>",
