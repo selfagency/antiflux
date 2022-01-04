@@ -21,4 +21,6 @@ interface EncryptedData {
   tag: Buffer
 }
 
-export { Store, Schema, Options, Getter, EncryptedData, EventEmitter }
+declare class Antiflux extends Store {}
+
+export { Antiflux, Schema, Options, Getter, EncryptedData, EventEmitter }
