@@ -25,6 +25,4 @@ declare class Antiflux extends Store {}
 
 export type { Antiflux, Schema, Options, Getter, EncryptedData, EventEmitter }
 
-// @ts-ignore
-module.default = Antiflux
 export default Antiflux
