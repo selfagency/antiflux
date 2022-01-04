@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 import { existsSync } from 'fs'
 import { read, write } from './io'
-import type { Getter, Options, Schema } from './main'
+import type { Getter, Options, Schema } from './main.d'
 import { deepset } from './util'
 
 export default class Store {
@@ -14,7 +14,7 @@ export default class Store {
 
   constructor(initialState: Schema = {}, options: Options = {}, getters: Record<string, Getter> = {}) {
     this.options = options
-    if (options.debug) process.env.DEBUG = 'true'
+    if (options.debug) process.env.DEBUG === 'true'
     this.watch = new EventEmitter()
 
     // configure debugging statements

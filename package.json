@@ -1,6 +1,6 @@
 {
   "name": "antiflux",
-  "version": "0.1.11",
+  "version": "0.1.10",
   "keywords": [
     "store",
     "state",
@@ -10,18 +10,22 @@
     "node",
     "flux"
   ],
-  "type": "module",
-  "main": "dist/main.js",
-  "types": "dist/main.d.ts",
   "author": "Daniel Sieradski <daniel@self.agency>",
   "repository": {
     "type": "git",
     "url": "https://github.com/selfagency/antiflux"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">= 14"
+  },
+  "source": "src/main.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/types.d.ts",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rm -rf dist; tsc -p ./tsconfig.json",
+    "build": "rm -rf dist; parcel build",
     "test": "jest --coverage"
   },
   "jest": {
@@ -35,8 +39,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
+    "@parcel/babel-preset-env": "^2.0.0-nightly",
+    "@parcel/config-default": "^2.0.0-nightly",
+    "@parcel/core": "^2.0.0-nightly",
+    "@parcel/packager-ts": "^2.0.0-nightly",
+    "@parcel/transformer-typescript-types": "^2.0.0-nightly",
+    "@parcel/validator-typescript": "^2.0.0-nightly",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
@@ -45,6 +56,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.3.3",
     "jest": "^27.4.5",
+    "parcel": "^2.0.0-nightly",
     "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   }
