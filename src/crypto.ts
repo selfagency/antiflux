@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import type { EncryptedData, Schema } from './main.d'
+import type { EncryptedData, Schema } from './main'
 
 const algo = 'aes-256-gcm'
 

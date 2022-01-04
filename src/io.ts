@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { decrypt, encrypt } from './crypto'
-import type { EncryptedData, Schema } from './main.d'
+import type { EncryptedData, Schema } from './main'
 
 const readFile = fs.readFileSync
 const writeFile = fs.writeFileSync

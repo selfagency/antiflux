@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 import { existsSync } from 'fs'
 import { read, write } from './io'
-import type { Getter, Options, Schema } from './main.d'
+import type { Getter, Options, Schema } from './main'
 import { deepset } from './util'
 
 export default class Store {

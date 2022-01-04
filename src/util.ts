@@ -1,4 +1,4 @@
-import type { Schema } from './main.d'
+import type { Schema } from './main'
 
 const deepset = (state: Schema, target: string, value: unknown) => {
   if (target.includes('.')) {
