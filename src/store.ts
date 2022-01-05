@@ -1,10 +1,11 @@
+import { EventEmitter } from 'events'
 import { existsSync } from 'fs'
+import type { Getter, Options, Schema } from './index.d'
 import { read, write } from './io'
-import { Getter, Options, Schema, Watch } from './main'
 import { deepset } from './util'
 
-export default class Antiflux {
-  watch: Watch
+export default class Store {
+  watch: EventEmitter
   getters?: {
     [key: string]: Getter
   }
@@ -14,7 +15,7 @@ export default class Antiflux {
   constructor(initialState: Schema = {}, options: Options = {}, getters: Record<string, Getter> = {}) {
     this.options = options
     if (options.debug) process.env.DEBUG === 'true'
-    this.watch = new Watch()
+    this.watch = new EventEmitter()
 
     // configure debugging statements
     if (options.debug) {

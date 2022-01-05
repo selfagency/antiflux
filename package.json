@@ -19,11 +19,11 @@
   "engines": {
     "node": ">= 14"
   },
-  "main": "dist/main.js",
-  "types:": "dist/main.d.ts",
+  "main": "dist/index.js",
+  "types:": "dist/index.d.ts",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rm -rf dist; NODE_ENV=production webpack",
+    "build": "rm -rf dist; NODE_ENV=production webpack; cp src/index.d.ts dist/index.d.ts",
     "test": "jest --coverage"
   },
   "jest": {

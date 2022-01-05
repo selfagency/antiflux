@@ -8,18 +8,18 @@ module.exports = {
   target: 'node',
   context: ROOT,
   entry: {
-    main: 'main.ts'
+    main: 'index.ts'
   },
   output: {
-    filename: 'main.js',
+    filename: 'index.js',
     path: DESTINATION,
-    library: 'antiflux'
+    library: 'Antiflux'
   },
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [ROOT, 'node_modules']
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {

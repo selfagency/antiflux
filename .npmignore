@@ -1,0 +1,12 @@
+__tests__
+.github
+coverage
+node_modules
+.dccache
+.editorconfig
+.eslintrc.json
+.gitignore
+.prettierrc
+webpack.config.cjs
+babel.config.json
+tsconfig.json

@@ -1,6 +1,6 @@
 # Antiflux
 
-A lightweight (<22kb bundled), zero-dependency, in-memory store and observable
+A lightweight (<10kb bundled), zero-dependency, in-memory store and observable
 state manager, exclusively for Node.js, for when reactive state managers and
 their attendant boilerplate are overkill.
 
@@ -15,7 +15,11 @@ npm install antiflux || yarn add antiflux
 ## Usage
 
 ```js
+// js
 import Antiflux from 'antiflux'
+
+// ts
+import Antiflux from 'antiflux/src/main
 
 const store = new Antiflux([initialState], [options], [getters])
 ```
