@@ -1,28 +1,27 @@
-import type { EventEmitter } from 'events'
+import { EventEmitter } from 'events'
 import Store from './store'
 
-interface Schema {
+export class Antiflux extends Store {}
+export class Watch extends EventEmitter {}
+
+export interface Schema {
   [key: string]: unknown
 }
 
-interface Options {
+export interface Options {
   persist?: string
   encryptKey?: string
   debug?: boolean
 }
 
-interface Getter {
+export interface Getter {
   (state: Schema): unknown
 }
 
-interface EncryptedData {
+export interface EncryptedData {
   enc: string
   iv: Buffer
   tag: Buffer
 }
-
-declare class Antiflux extends Store {}
-
-export type { Antiflux, Schema, Options, Getter, EncryptedData, EventEmitter }
 
 export default Antiflux
