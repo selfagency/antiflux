@@ -3,7 +3,7 @@ import { read, write } from './io'
 import { Getter, Options, Schema, Watch } from './main'
 import { deepset } from './util'
 
-export default class Store {
+export default class Antiflux {
   watch: Watch
   getters?: {
     [key: string]: Getter
