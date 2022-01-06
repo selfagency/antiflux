@@ -1,6 +1,6 @@
 # Antiflux
 
-A lightweight (<10kb bundled), zero-dependency, in-memory store and observable
+A lightweight (<20kb bundled), zero-dependency, in-memory store and observable
 state manager, exclusively for Node.js, for when reactive state managers and
 their attendant boilerplate are overkill.
 

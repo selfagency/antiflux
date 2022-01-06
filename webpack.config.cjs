@@ -13,7 +13,10 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: DESTINATION,
-    library: 'Antiflux'
+    library: {
+      name: 'Antiflux',
+      type: 'var'
+    }
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -23,14 +26,19 @@ module.exports = {
   module: {
     rules: [
       {
+        use: 'source-map-loader',
         enforce: 'pre',
-        test: /\.js$/,
-        use: 'source-map-loader'
+        test: /\.js$/
       },
       {
         use: 'ts-loader',
         exclude: [/node_modules/],
         test: /\.ts?$/
+      },
+      {
+        use: 'babel-loader',
+        exclude: /node_modules/,
+        test: /.m?js$/
       }
     ]
   }
