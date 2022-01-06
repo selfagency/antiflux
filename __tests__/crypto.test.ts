@@ -1,5 +1,5 @@
 import { decrypt, encrypt } from '../src/crypto'
-import { EncryptedData } from '../src/main'
+import { EncryptedData } from '../src/index.d'
 import Store from '../src/store'
 import vars from './helpers/vars'
 
@@ -8,7 +8,7 @@ const { key, state, testObj } = vars
 test('initialize encrypted store', () => {
   const localState = Object.assign({}, state)
   const store = new Store(localState, { encryptKey: key })
-  expect(store).toBeDefined()
+  expect(store).toBeInstanceOf(Store)
 })
 
 test('encrypt', () => {

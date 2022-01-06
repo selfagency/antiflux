@@ -1,4 +1,4 @@
-import type { Schema } from '../src/main'
+import type { Schema } from '../src/index.d'
 import Store from '../src/store'
 import vars from './helpers/vars'
 

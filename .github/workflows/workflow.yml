@@ -13,28 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Get package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
       - name: Install modules
         run: yarn
 
-      - name: Build test
+      - name: Build
         run: yarn build
 
-      - name: Unit tests
+      - name: Test
         run: yarn test
 
-      - name: Upload code coverage to Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Upload code coverage to Codacy
+      - name: Upload coverage to Codacy
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_TOKEN }}
-
-      - name: Get package version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
 
       - name: Create GitHub Release
         uses: zendesk/action-create-release@v1

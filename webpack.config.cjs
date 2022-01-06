@@ -14,8 +14,7 @@ module.exports = {
     filename: 'index.js',
     path: DESTINATION,
     library: {
-      name: 'Antiflux',
-      type: 'var'
+      type: 'commonjs'
     }
   },
   resolve: {
