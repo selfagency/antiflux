@@ -15,7 +15,7 @@ module.exports = {
     path: DESTINATION,
     library: {
       name: 'Antiflux',
-      type: 'commonjs'
+      type: 'var'
     }
   },
   resolve: {
