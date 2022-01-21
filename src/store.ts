@@ -20,11 +20,11 @@ export default class Store {
     // configure debugging statements
     if (options.debug) {
       this.watch.on('set', data => {
-        console.log(`(Store) ${data.key}: ${JSON.stringify(data.prior)} ➟ ${JSON.stringify(data.value)}`)
+        console.log(`(Store) ${data.key}: ${data.prior} ➟ ${data.value}`)
       })
 
       this.watch.on('delete', data => {
-        console.log(`(Store) ${data.key}: ${JSON.stringify(data.prior)} ➟ DELETED`)
+        console.log(`(Store) ${data.key}: ${data.prior} ➟ DELETED`)
       })
 
       this.watch.on('clear', () => {
